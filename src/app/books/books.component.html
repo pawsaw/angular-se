@@ -1,0 +1,12 @@
+<app-book-filter-input
+  (titleChange)="titleChange($event)"
+></app-book-filter-input>
+<ng-container *ngIf="books$ | async as books; else loading">
+  <p>You have {{ books.length }} books in your collection.</p>
+  <app-book-card
+    *ngFor="let book of books"
+    [book]="book"
+    (bookSelected)="navigateWithBook($event)"
+  ></app-book-card>
+</ng-container>
+<ng-template #loading> Loading... </ng-template>

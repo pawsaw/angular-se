@@ -1,0 +1,6 @@
+<div [style]="initialStyle" *ngIf="book">
+  <h2>{{ book.title }}</h2>
+  <h4>{{ book.author }}</h4>
+  <a href="#" (click)="detailsClicked($event)">Details</a>
+  <p>{{ book.abstract }}</p>
+</div>

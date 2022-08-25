@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of, Subscription } from 'rxjs';
 import { Book } from './book';
 import { BooksService } from './books.service';
@@ -11,7 +12,7 @@ import { BooksService } from './books.service';
 export class BooksComponent implements OnInit, OnDestroy {
   books$: Observable<Book[] | null> = of(null);
 
-  constructor(private _books: BooksService) {}
+  constructor(private _books: BooksService, private _router: Router) {}
 
   ngOnInit(): void {
     this.books$ = this._books.books();
@@ -26,6 +27,6 @@ export class BooksComponent implements OnInit, OnDestroy {
   }
 
   navigateWithBook(book: Book): void {
-    console.log('Navigate with Book', book);
+    this._router.navigate(['books', 'detail', book.isbn]);
   }
 }

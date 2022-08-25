@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { delay, interval, Observable, switchMap, timer } from 'rxjs';
-import { Book } from './book';
+import { Book, ISBN } from './book';
 
 @Injectable({
   providedIn: 'root',
@@ -13,5 +13,9 @@ export class BooksService {
     return interval(2000).pipe(
       switchMap((_) => this._http.get<Book[]>('http://localhost:4730/books'))
     );
+  }
+
+  book(isbn: ISBN): Observable<Book> {
+    return this._http.get<Book>(`http://localhost:4730/books/${isbn}`);
   }
 }

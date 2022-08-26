@@ -7,6 +7,9 @@ import { BookFilterPipe } from './book-filter/book-filter.pipe';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { BookCollectionComponent } from './book-collection/book-collection.component';
 import { BooksRoutingModule } from './books-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { bookCollectionFeatureName } from './store/book-collection.feature';
+import { bookCollectionReducer } from './store/book-collection.reducer';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,13 @@ import { BooksRoutingModule } from './books-routing.module';
     BookDetailComponent,
     BookCollectionComponent,
   ],
-  imports: [CommonModule, BooksRoutingModule],
+  imports: [
+    CommonModule,
+    BooksRoutingModule,
+    StoreModule.forFeature(bookCollectionFeatureName, {
+      bookCollection: bookCollectionReducer,
+    }),
+  ],
   exports: [BooksComponent],
 })
 export class BooksModule {}

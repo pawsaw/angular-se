@@ -9,3 +9,5 @@ export const createBookStart = createAction(
   '[Book] create book start',
   props<CreateBookStartPayload>()
 );
+
+export type CreateBookStartAction = ReturnType<typeof createBookStart>;
